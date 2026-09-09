@@ -18,7 +18,9 @@ namespace _30_08_26_stepic
     {
         public static void PrintAllChar(List<Character> char_list)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("All character: ");
+            Console.ResetColor();
             for (int i = 0; i < char_list.Count; i++)
             {
                 Console.WriteLine($"{i + 1}) {char_list[i].Name}");
@@ -39,10 +41,11 @@ namespace _30_08_26_stepic
             while (flag)
             {
                 Console.WriteLine("-----Main Menu-----");
-                Console.WriteLine("Hi! Chose the number:");
-                Console.WriteLine("1.Create your character.\n2.Show all characters (names).\n3.Show ditales chose character\n4.Delete character.\n5.Exit.");
-                Console.WriteLine("So, you chose:");
+                Console.WriteLine("Hi! Choose the number:");
+                Console.WriteLine("1.Create your character.\n2.Show all characters (names).\n3.Show details choose character\n4.Delete character.\n5.Exit.");
+                Console.WriteLine("So, you choose:");
                 string choice = Console.ReadLine();
+                Console.WriteLine("\n");
                 switch (choice)
                 {
                     case "1":
@@ -64,13 +67,17 @@ namespace _30_08_26_stepic
                             Character claymore_char = new ClaymoreChar(name_char, choice_weapon, elem_char, hp, atk, def, crit_rate, crit_dmg, role_char, 15);
                             char_list.Add(claymore_char);
                         }
-                        Console.WriteLine("Your character add in list!");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Your character added to the list!");
+                        Console.ResetColor();
                         Console.WriteLine("\n\n");
                         break;
                     case "2":
                         if (char_list.Count == 0)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("The list is empty.");
+                            Console.ResetColor();
                         }
                         else
                             PrintAllChar(char_list);
@@ -79,33 +86,69 @@ namespace _30_08_26_stepic
                     case "3":
                         if (char_list.Count == 0)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("The list is empty.");
+                            Console.ResetColor();
                         }
                         else
                             PrintAllChar(char_list);
 
                         Console.WriteLine("\n");
-                        Console.WriteLine("Chose the character (enter the character number): ");
-                        int choice_num = Convert.ToInt32(Console.ReadLine());
-                        if (choice_num > char_list.Count || choice_num <= 0)
+                        Console.WriteLine("Choose the character (enter the character number): ");
+                        if(int.TryParse(Console.ReadLine(), out int choice_num) && choice_num >= 1 && choice_num <= char_list.Count)
                         {
-                            Console.WriteLine("Uncorrect character number!");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine("Details of character: ");
+                            Console.ResetColor();
+                            char_list[choice_num - 1].PrintStats();
                         }
                         else
                         {
-                            char_list[choice_num - 1].PrintStats();
-                            Console.WriteLine("Ditales of character: ");
+                            Console.WriteLine("\n");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Incorrect character number!");
+                            Console.ResetColor();
                         }
+                        Console.WriteLine("\n");
                         break;
                     case "4":
+                        if (char_list.Count == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("The list is empty.");
+                            Console.ResetColor();
+                        }
+                        else
+                            PrintAllChar(char_list);
+                        Console.WriteLine("\n");
                         Console.WriteLine("Enter character for delete");
+                        if (int.TryParse(Console.ReadLine(), out int choice_num_del) && choice_num_del >= 1 && choice_num_del <= char_list.Count)
+                        {
+                            Console.WriteLine("Details of character: ");
+                            char_list[choice_num_del - 1].PrintStats();
+                            char_list.RemoveAt(choice_num_del-1);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("The character is delete!");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Incorrect character number!");
+                            Console.ResetColor();
+                        }
+                        Console.WriteLine("\n");
                         break;
                     case "5":
                         Console.WriteLine("Bye");
                         flag = false;
                         break;
                     default:
-                        Console.WriteLine("Uncorrect enter!");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Incorrect enter!");
+                        Console.ResetColor();
+                        Console.WriteLine("\n\n");
                         break;
                 }
             }
