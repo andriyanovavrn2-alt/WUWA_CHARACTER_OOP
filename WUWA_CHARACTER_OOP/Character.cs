@@ -5,7 +5,7 @@ using WUWA_CHARACTER_OOP;
 
 namespace WUWA_CHARACTER_OOP
 {
-    internal class Character
+    abstract class Character
     {
         public string Name { get; set; }
         public int Level { get; set; }
@@ -33,10 +33,7 @@ namespace WUWA_CHARACTER_OOP
         {
             Level += 1;
         }
-        public virtual double GetDamage()
-        {
-            return ATK * (1 + CritRate * CritDamage / 100);
-        }
+        public abstract double GetDamage();
         public virtual void PrintStats()
         {
             Console.WriteLine($"Имя: {Name}\nОружие: {Weapon}\nЭлемент: {Element}\nХП: {HP}\nАТК: {ATK}\nЗащита: {DEF}\nКрит Шанс: {CritRate}\nКрит Урон: {CritDamage}\nРоль: {Role}");

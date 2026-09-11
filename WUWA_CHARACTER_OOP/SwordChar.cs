@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WUWA_CHARACTER_OOP
 {
-    internal class SwordChar : Character
+    internal class SwordChar : Character, IIDamageDealer, IHealer, ISupport
     {
         public double ATKSpeed { get; set; }
         public SwordChar(string name, string weapon, string element, double hp, double atk, double def, double crit_rate, double crit_damage, string role, double atk_speed) : base(name, "Sword", element, hp, atk, def, crit_rate, crit_damage, role)
@@ -13,7 +13,7 @@ namespace WUWA_CHARACTER_OOP
         }
         public override double GetDamage()
         {
-            return base.GetDamage() * 1.1;
+            return (ATK * (1 + CritRate * CritDamage / 100)) * 1.1;
         }
         public override void PrintStats()
         {
