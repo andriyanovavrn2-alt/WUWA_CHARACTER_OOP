@@ -12,7 +12,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using WUWA_CHARACTER_OOP;
 
-namespace _30_08_26_stepic
+namespace WUWA_CHARACTER_OOP.Models
 {
     internal class Program
     {
@@ -33,7 +33,7 @@ namespace _30_08_26_stepic
             bool flag = true;
             List<Character> char_list = new List<Character>();
 
-            const double hp = 10_000;
+            const int hp = 10_000;
             const double atk = 500;
             const double def = 1_500;
             const double crit_rate = 5;

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WUWA_CHARACTER_OOP
+namespace WUWA_CHARACTER_OOP.Models
 {
     internal class SwordChar : Character, IIDamageDealer, IHealer, ISupport
     {
         public double ATKSpeed { get; set; }
-        public SwordChar(string name, string weapon, string element, double hp, double atk, double def, double crit_rate, double crit_damage, string role, double atk_speed) : base(name, "Sword", element, hp, atk, def, crit_rate, crit_damage, role)
+        public SwordChar(string name, string weapon, string element, int hp, double atk, double def, double crit_rate, double crit_damage, string role, double atk_speed) : base(name, "Sword", element, hp, atk, def, crit_rate, crit_damage, role)
         {
             ATKSpeed = atk_speed;
         }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WUWA_CHARACTER_OOP;
 
-namespace WUWA_CHARACTER_OOP
+namespace WUWA_CHARACTER_OOP.Models
 {
     abstract class Character
     {
@@ -11,13 +10,13 @@ namespace WUWA_CHARACTER_OOP
         public int Level { get; set; }
         public string Weapon { get; set; }
         public string Element { get; set; }
-        public double HP { get; set; }
+        public int HP { get; set; }
         public double ATK { get; set; }
         public double DEF { get; set; }
         public double CritRate { get; set; }
         public double CritDamage { get; set; }
         public string Role { get; set; }
-        public Character(string name, string weapon, string element, double hp, double atk, double def, double crit_rate, double crit_damage, string role)
+        public Character(string name, string weapon, string element, int hp, double atk, double def, double crit_rate, double crit_damage, string role)
         {
             Name = name;
             Weapon = weapon;
